@@ -74,8 +74,13 @@ const Candidates = () => {
           </div>
           <div className="number-box">{numberNfts}</div>
         </div>
-        <button onClick={handleCreateToken} class="green-button">
-          Create a Token
+        <button
+          onClick={handleCreateToken}
+          className={`green-button ${loading ? "luminous" : ""}`}
+        >
+          {loading
+            ? "Tokenizing Candidate and Sending Tokens to Voters"
+            : "Create a Token"}
         </button>
       </div>
     </div>

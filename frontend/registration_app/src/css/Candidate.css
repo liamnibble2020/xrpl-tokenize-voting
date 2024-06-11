@@ -18,9 +18,9 @@
   z-index: 1000;
 }
 
-.content-blur {
+/* .content-blur {
   filter: blur(2px);
-}
+} */
 
 .success-message {
   background-color: #d4edda;
@@ -76,7 +76,35 @@
 }
 
 .green-button {
+  padding: 10px 20px;
   background-color: green;
   color: white;
-  /* Add any additional styling properties here */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.green-button:hover {
+  align-items: center;
+  background-color: #45a049;
+}
+
+/* In your CSS file or within a <style> tag */
+.luminous {
+  color: #00ff00; /* Green text color */
+  background-color: transparent; /* No background color */
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+  }
+  to {
+    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+  }
 }
