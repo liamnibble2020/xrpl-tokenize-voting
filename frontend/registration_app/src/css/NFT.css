@@ -1,0 +1,17 @@
+/* NFTPage.module.css */
+.nft-container {
+  text-align: center;
+}
+
+.iframeWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.nftIframe {
+  width: 300px;
+  height: 300px;
+  border: none;
+}
