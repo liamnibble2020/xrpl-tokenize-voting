@@ -5,12 +5,13 @@ import "../src/css/Candidate.css";
 
 const Candidates = () => {
   const [numberNfts, setNumberNfts] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(false);
+  const [tokenLoading, setTokenLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreateToken = async () => {
-    setLoading(true);
+    setTokenLoading(true);
     setSuccessMessage("");
     setErrorMessage("");
     try {
@@ -21,13 +22,13 @@ const Candidates = () => {
       console.error("Error creating token:", error);
       setErrorMessage("Error creating token. Please try again.");
     } finally {
-      setLoading(false);
+      setTokenLoading(false);
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
+      setFetchLoading(true);
       setErrorMessage("");
       try {
         const response = await axios.get("http://localhost:5000/get_nft");
@@ -37,7 +38,7 @@ const Candidates = () => {
         console.error("Error fetching the data:", error);
         setErrorMessage("Error fetching the data. Please try again.");
       } finally {
-        setLoading(false);
+        setFetchLoading(false);
       }
     };
 
@@ -46,12 +47,12 @@ const Candidates = () => {
 
   return (
     <div className="candidate-container">
-      {loading && (
+      {fetchLoading && (
         <div className="loading-overlay">
           <Oval color="#00BFFF" height={150} width={150} />
         </div>
       )}
-      <div className={loading ? "content-blur" : ""}>
+      <div className={fetchLoading ? "content-blur" : ""}>
         {successMessage && (
           <div className="success-message">{successMessage}</div>
         )}
@@ -74,11 +75,16 @@ const Candidates = () => {
           </div>
           <div className="number-box">{numberNfts}</div>
         </div>
+        {tokenLoading && (
+          <div className="loading-overlay">
+            <Oval color="#00BFFF" height={150} width={150} />
+          </div>
+        )}
         <button
           onClick={handleCreateToken}
-          className={`green-button ${loading ? "luminous" : ""}`}
+          className={`green-button ${tokenLoading ? "luminous" : ""}`}
         >
-          {loading
+          {tokenLoading
             ? "Tokenizing Candidate and Sending Tokens to Voters"
             : "Create a Token"}
         </button>

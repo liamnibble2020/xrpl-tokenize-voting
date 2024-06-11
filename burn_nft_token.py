@@ -28,7 +28,7 @@ def burn_token(seed, nftoken_id, testnet_url="https://s.altnet.rippletest.net:51
 
 # Usage example
 seed = "sEdTHYZhuZDCsabktbhfS56kaXBZumq"  # Replace with your XRPL wallet seed
-nftoken_id = "000800005E9D2F64925DBA6F8FD8909326BD11A56109684867F109A2000F4907"  # Replace with the actual NFT ID
+nftoken_id = "000800005E9D2F64925DBA6F8FD8909326BD11A56109684895BCABA4000F4909"  # Replace with the actual NFT ID
 
 result = burn_token(seed, nftoken_id)
 print(result)
