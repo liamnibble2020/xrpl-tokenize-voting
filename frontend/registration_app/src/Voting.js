@@ -55,7 +55,7 @@ const Voting = () => {
   };
 
   return (
-    <div className="nft-container">
+    <div className="voting-container">
       <div className="top-section">
         <div className="image-box">
           <img
@@ -70,8 +70,8 @@ const Voting = () => {
           </button>
           {showForm && confirmCandidate === "Don" && (
             <div className="modal">
-              <h2>Confirm Vote</h2>
-              <p>Are you sure you want to vote for {confirmCandidate}?</p>
+              <h2>Are you sure you want to vote for {confirmCandidate}?</h2>
+              <p>Fill the blanks to complete your vote</p>
               <form className="show-form" onSubmit={handleSubmit}>
                 <label>
                   Firstname:
@@ -122,7 +122,8 @@ const Voting = () => {
                     required
                   />
                 </label>
-                <button type="submit">Confirm Vote</button>
+                <p></p>
+                <button type="submit">Vote Now</button>
               </form>
             </div>
           )}
@@ -142,8 +143,8 @@ const Voting = () => {
           </button>
           {showForm && confirmCandidate === "Taz" && (
             <div className="modal">
-              <h2>Confirm Vote</h2>
-              <p>Are you sure you want to vote for {confirmCandidate}?</p>
+              <h2>Are you sure you want to vote for {confirmCandidate}?</h2>
+              <p>Fill the blanks to complete your vote</p>
               <form className="show-form" onSubmit={handleSubmit}>
                 <label>
                   Firstname:
@@ -194,7 +195,8 @@ const Voting = () => {
                     required
                   />
                 </label>
-                <button type="submit">Confirm Vote</button>
+                <p></p>
+                <button type="submit">Vote Now</button>
               </form>
             </div>
           )}

@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center;
   height: 140vh;
+  background-image: url("../image/huntsman.png"); /* Replace with your image path */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
 }
 
 form {

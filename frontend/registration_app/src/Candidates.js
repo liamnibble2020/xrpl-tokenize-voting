@@ -45,7 +45,7 @@ const Candidates = () => {
   }, []);
 
   return (
-    <div className="nft-container">
+    <div className="candidate-container">
       {loading && (
         <div className="loading-overlay">
           <Oval color="#00BFFF" height={150} width={150} />
