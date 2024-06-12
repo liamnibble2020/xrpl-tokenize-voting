@@ -152,16 +152,19 @@ def voting():
            
         # if credentials is good this will return voters seed    
         voters_seed = fetch_credentials.fetch_credentials(credentials)
-        
+        print(voters_seed)
+        if voters_seed == "No wallet address found.":
+            return "Bad credentials"
+        else:
         # casting the votes
-        if candidate == "Don":
-            voters_wallet.vote_don.cache_clear()
-            res = voters_wallet.vote_don(voters_seed)
-            return res
-        elif candidate == "Taz":
-            voters_wallet.vote_taz.cache_clear()
-            res = voters_wallet.vote_taz(voters_seed)        
-            return res
+            if candidate == "Don":
+                voters_wallet.vote_don.cache_clear()
+                res = voters_wallet.vote_don(voters_seed)
+                return res
+            elif candidate == "Taz":
+                voters_wallet.vote_taz.cache_clear()
+                res = voters_wallet.vote_taz(voters_seed)        
+                return res
     except xrpl.transaction.XRPLReliableSubmissionException as e:
         return f"something is wrong with credentials {e}"    
 

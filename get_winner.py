@@ -41,15 +41,16 @@ def get_winner():
             print("Vote returns is Valid")
             
             if candidate1_balance > candidate2_balance:
-                winner = candidate1_currency
+                winner = {"winners_name": candidate1_currency, "number_of_votes": candidate1_balance}
                 print(f"The winner is {winner}")
                 return winner
             elif candidate2_balance > candidate1_balance:
-                winner = candidate2_currency
+                winner = {"winners_name": candidate2_currency, "number_of_votes": candidate2_balance}
                 print(f"The winner is {winner}")
                 return winner
-            elif candidate2_balance == candidate1_balance:
-                return "It's a tie"                
+            elif candidate2_balance == candidate1_balance:                                
+                return "It's a tie"   
+                           
             else:
                 return "Something is wrong"    
         else:

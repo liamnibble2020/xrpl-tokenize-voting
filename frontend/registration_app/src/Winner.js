@@ -5,31 +5,32 @@ import "../src/css/Winner.css";
 
 const Winner = () => {
   const [winner, setWinner] = useState(null);
-  // const [message, setMessage] = useState({ text: "", type: "" });
-  // const [loading, setLoading] = useState(false); // Add loading state
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleClick = async () => {
     try {
       const response = await axios.get("http://localhost:5000/winner");
       console.log(response.data);
       if (response.data === "It's a tie") {
-        //setMessage({ text: "It's a tie!", type: "success" });
+        setSuccessMessage(response.data);
+        setWinner("");
+      } else if (response.data.winners_name === "DON") {
+        setSuccessMessage(
+          `The Winner is ${response.data.winners_name} with ${response.data.number_of_votes} votes`
+        );
+        setWinner("Don");
+      } else if (response.data.winners_name === "TAZ") {
+        setSuccessMessage(
+          `The Winner is ${response.data.winners_name} with ${response.data.number_of_votes} votes`
+        );
         setWinner("Taz");
       }
     } catch (error) {
       console.error("Something is wrong", error);
-      // setMessage({
-      //   text: "Something is wrong. Please try again.",
-      //   type: "error",
-      // });
-    } finally {
-      //setLoading(false); // Set loading to false after the request completes
+      setSuccessMessage("Something is wrong", error);
+      setWinner("");
     }
-    // const randomWinner = Math.random() < 0.5 ? "Don" : "Taz";
   };
-
-  const DON_PINATA = env.DON_PINATA;
-  const TAZ_PINATA = env.TAZ_PINATA;
 
   return (
     <div className="winner-container">
@@ -40,13 +41,14 @@ const Winner = () => {
       ) : (
         <div className="winner-image-container">
           <img
-            src={winner === "Don" ? DON_PINATA : TAZ_PINATA}
+            src={winner === "Don" ? env.DON_PINATA : env.TAZ_PINATA}
             alt={`${winner} wins`}
             className="winner-image"
           />
           <div className="confetti"></div>
         </div>
       )}
+      {successMessage && <p className="message success">{successMessage}</p>}
     </div>
   );
 };

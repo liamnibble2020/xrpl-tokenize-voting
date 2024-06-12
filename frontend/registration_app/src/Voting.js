@@ -16,12 +16,19 @@ const Voting = () => {
   const [confirmCandidate, setConfirmCandidate] = useState("");
   const [message, setMessage] = useState({ text: "", type: "" });
   const [loading, setLoading] = useState(false); // Add loading state
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const Voting = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/voting", data);
       console.log(response.data);
-      setMessage({ text: "Vote submitted successfully!", type: "success" });
+      if (response.data === "Bad credentials") {
+        setErrorMessage("Bad credentials 2 more attempts");
+      } else {
+        console.log(response.data);
+        setSuccessMessage(response.data);
+      }
     } catch (error) {
       console.error("Error creating token:", error);
       setMessage({
@@ -211,6 +218,10 @@ const Voting = () => {
         <div className="loading-overlay">
           <Oval color="#00BFFF" height={150} width={150} />
         </div>
+      )}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
       )}
     </div>
   );

@@ -44,9 +44,8 @@ def fetch_credentials(credentials):
             seed = response_data["rows"][0]["metadata"]["keyvalues"]["Seed"]
             print(seed)
             return seed
-        else:
-            print("No wallet address found.")
-            return None
+        else:            
+            return "No wallet address found."
         
     except xrpl.transport.XRPLReliableSubmissionException as e:
         print(e)    
