@@ -10,6 +10,7 @@ import candidates_token as candidates_token
 import send_candidate_token_to_voters as trust_send_currency
 import fetch_credentials as fetch_credentials
 import voters_wallet as voters_wallet
+import get_winner as get_winner
 import requests
 import os
 
@@ -112,19 +113,22 @@ def tokenize():
      
     try:
         # Get NFT cid and create trustline then send candidate token 
-        response = get_nft()  
-        # Number of candidate tokens equal to the number of voters nft tokens
-        tokenize_tx = candidates_token.tokenize_candidates(response['numbers_of_nfts'])        
-        # Send candidate token to the voters        
-        uri = [cid.split('/')[-1] for cid in response['uri']]        
-        for cid in uri:   
-            seed = fetch_wallet_address.get_wallet_address(cid)
-            print(seed)
-            trust_and_token_tx = trust_send_currency.trust_send_currency(seed)
-            print(trust_and_token_tx)
-    
-        return tokenize_tx
-          
+        response = get_nft()         
+        
+        if response != "No voters NFTS found":
+            # Number of candidate tokens equal to the number of voters nft tokens
+            tokenize_tx = candidates_token.tokenize_candidates(response['numbers_of_nfts'])        
+            # Send candidate token to the voters        
+            uri = [cid.split('/')[-1] for cid in response['uri']]        
+            for cid in uri:   
+                seed = fetch_wallet_address.get_wallet_address(cid)
+                print(seed)
+                trust_and_token_tx = trust_send_currency.trust_send_currency(seed)
+                print(trust_and_token_tx)
+        
+            return tokenize_tx
+        else:
+            return "No voters NFTS found"  
     except xrpl.transaction.XRPLReliableSubmissionException as e:
         print(e)
 
@@ -161,7 +165,10 @@ def voting():
     except xrpl.transaction.XRPLReliableSubmissionException as e:
         return f"something is wrong with credentials {e}"    
 
-  
+@app.route('/winner', methods=['GET'])  
+def winner():  
+    res = get_winner.get_winner()
+    return res
 
 if __name__ == '__main__':
     if not os.path.exists('uploads'):

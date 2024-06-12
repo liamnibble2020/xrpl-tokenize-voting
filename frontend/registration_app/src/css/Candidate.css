@@ -3,6 +3,10 @@
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   height: 100vh; /* Make it full height of the viewport */
+  background-image: url("../image/flower.jpeg"); /* Replace with your image path */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
 }
 
 .loading-overlay {
@@ -23,6 +27,15 @@
 } */
 
 .success-message {
+  position: fixed; /* Set the position to fixed */
+  top: 0; /* Position it at the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  width: 40%; /* Adjust the width as needed */
+  margin: 10px auto; /* Add margin to center vertically */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid rgb(0, 255, 68);
   background-color: #d4edda;
   color: #155724;
 }
@@ -32,7 +45,7 @@
   top: 0; /* Position it at the top */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
-  width: 90%; /* Adjust the width as needed */
+  width: 40%; /* Adjust the width as needed */
   margin: 10px auto; /* Add margin to center vertically */
   padding: 10px;
   border-radius: 4px;
@@ -49,8 +62,8 @@
 
 .image-box {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
 }
 
 .image-box img {

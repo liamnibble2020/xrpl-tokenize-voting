@@ -4,6 +4,7 @@ import Registration from "./Registration";
 import NFTPage from "./NFTPage";
 import Candidates from "./Candidates";
 import Voting from "./Voting";
+import Winner from "./Winner";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/nft" element={<NFTPage />} />
         <Route path="/candidates" element={<Candidates />} />
         <Route path="/voting" element={<Voting />} />
+        <Route path="/winner" element={<Winner />} />
       </Routes>
     </Router>
   );

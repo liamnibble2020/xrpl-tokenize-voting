@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import env from "react-dotenv";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
 import "../src/css/Candidate.css";
@@ -15,9 +16,13 @@ const Candidates = () => {
     setSuccessMessage("");
     setErrorMessage("");
     try {
-      const response = await axios.get("http://localhost:5000/tokenize");
+      const response = await axios.get(env.TOKENIZE);
       console.log(response.data);
-      setSuccessMessage("Token created successfully!");
+      if (response.data == "No voters NFTS found") {
+        setSuccessMessage(response.data);
+      } else {
+        setSuccessMessage("Token created successfully!");
+      }
     } catch (error) {
       console.error("Error creating token:", error);
       setErrorMessage("Error creating token. Please try again.");
@@ -31,7 +36,7 @@ const Candidates = () => {
       setFetchLoading(true);
       setErrorMessage("");
       try {
-        const response = await axios.get("http://localhost:5000/get_nft");
+        const response = await axios.get(env.GET_NFT);
         console.log(response.data);
         setNumberNfts(response.data.numbers_of_nfts);
       } catch (error) {
@@ -59,19 +64,13 @@ const Candidates = () => {
         {errorMessage && <div className="error-message">{errorMessage}</div>}
         <div className="top-section">
           <div className="image-box">
-            <img
-              src="https://ipfs.io/ipfs/QmYeE3ueDAWoyUVWhZbYLZKqXt5i4GjHDVe5yz9HtMa6gR"
-              alt="Donald"
-            />
+            <img src={env.DON_PINATA} alt="Donald" />
           </div>
           <div className="number-box">{numberNfts}</div>
         </div>
         <div className="top-section">
           <div className="image-box">
-            <img
-              src="https://ipfs.io/ipfs/QmcRRygivrKt3rbWM4EysaH9hAhwbByFb6Q62aSHJPP1pr"
-              alt="Taz"
-            />
+            <img src={env.TAZ_PINATA} alt="Taz" />
           </div>
           <div className="number-box">{numberNfts}</div>
         </div>
