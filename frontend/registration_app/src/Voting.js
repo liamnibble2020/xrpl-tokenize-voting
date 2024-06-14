@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import env from "react-dotenv";
 import { Oval } from "react-loader-spinner";
 import "../src/css/Voting.css";
 
@@ -22,9 +23,12 @@ const Voting = () => {
   const Voting = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/voting", data);
-      console.log(response.data);
       if (response.data === "Bad credentials") {
+        console.log(response.data);
         setErrorMessage("Bad credentials 2 more attempts");
+      } else if (response.data.includes("Something")) {
+        console.log(response.data);
+        setErrorMessage(response.data);
       } else {
         console.log(response.data);
         setSuccessMessage(response.data);
@@ -67,15 +71,18 @@ const Voting = () => {
         <div className="image-box">
           <img
             src="https://ipfs.io/ipfs/QmYeE3ueDAWoyUVWhZbYLZKqXt5i4GjHDVe5yz9HtMa6gR"
-            alt="Don"
+            alt={env.DONALD}
             className="oval-image"
           />
         </div>
         <div className="vote-section">
-          <button onClick={() => handleVoteClick("Don")} class="vote-button">
+          <button
+            onClick={() => handleVoteClick(env.DONALD)}
+            className="vote-button"
+          >
             Vote for Don
           </button>
-          {showForm && confirmCandidate === "Don" && (
+          {showForm && confirmCandidate === env.DONALD && (
             <div className="modal">
               <h2>Are you sure you want to vote for {confirmCandidate}?</h2>
               <p>Fill the blanks to complete your vote</p>
@@ -145,10 +152,13 @@ const Voting = () => {
           />
         </div>
         <div className="vote-section">
-          <button onClick={() => handleVoteClick("Taz")} class="vote-button">
+          <button
+            onClick={() => handleVoteClick(env.TAZ)}
+            className="vote-button"
+          >
             Vote for Taz
           </button>
-          {showForm && confirmCandidate === "Taz" && (
+          {showForm && confirmCandidate === env.TAZ && (
             <div className="modal">
               <h2>Are you sure you want to vote for {confirmCandidate}?</h2>
               <p>Fill the blanks to complete your vote</p>

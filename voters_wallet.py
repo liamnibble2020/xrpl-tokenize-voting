@@ -22,7 +22,7 @@ def vote_don(voters_seed):
             account=sending_wallet.address,
             destination=receiving_wallet.address,
             amount=xrpl.models.amounts.issued_currency_amount.IssuedCurrencyAmount(
-                currency="DON",
+                currency=os.getenv('donald_token_name'),
                 issuer=issuer_wallet.address,
                 value=issue_quantity
             )
@@ -38,7 +38,7 @@ def vote_don(voters_seed):
 @lru_cache(maxsize=None)        
 def vote_taz(voters_seed):
     try:
-        print(f"Voting for Tazzz {voters_seed}")
+        print(f"Voting for Taz {voters_seed}")
         receiving_wallet = Wallet.from_seed(os.getenv('candidate_2'))
         sending_wallet = Wallet.from_seed(voters_seed)
         issuer_wallet = Wallet.from_seed(os.getenv('issuer_wallet'))
@@ -48,7 +48,7 @@ def vote_taz(voters_seed):
             account=sending_wallet.address,
             destination=receiving_wallet.address,
             amount=xrpl.models.amounts.issued_currency_amount.IssuedCurrencyAmount(
-                currency="TAZ",
+                currency= os.getenv('taz_token_name'),
                 issuer=issuer_wallet.address,
                 value=issue_quantity
             )

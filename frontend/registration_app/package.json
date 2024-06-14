@@ -44,7 +44,9 @@
       "DON_PINATA",
       "TAZ_PINATA",
       "GET_NFT",
-      "TOKENIZE"
+      "TOKENIZE",
+      "DONALD",
+      "TAZ"
     ]
   }
 }

@@ -15,50 +15,50 @@ def trust_send_currency(seed):
         trustline_tx=xrpl.models.transactions.TrustSet(
             account=receiving_wallet.address,
             limit_amount=xrpl.models.amounts.IssuedCurrencyAmount(
-                currency="DON",
+                currency= os.getenv('donald_token_name'),
                 issuer=sending_wallet.address,
                 value=int("1")
             )
         )
         response =  xrpl.transaction.submit_and_wait(trustline_tx,client, receiving_wallet)
-        print("trustline: " , response) 
+        print("TRUSLINE IS SETUP: " , response) 
         
         send_currency_tx=xrpl.models.transactions.Payment(
             account=sending_wallet.address,
             amount=xrpl.models.amounts.IssuedCurrencyAmount(
-                currency="DON",
+                currency=os.getenv('donald_token_name'),
                 value=int("1"),
                 issuer=sending_wallet.address
             ),
             destination=receiving_wallet.address)
         
         response = xrpl.transaction.submit_and_wait(send_currency_tx, client, sending_wallet)
-        print("payments: " , response)  
+        print("PAYMENTS IS SETUP: " , response)  
         
         #########################Second Candidate####################################### 
         
         trustline_tx=xrpl.models.transactions.TrustSet(
             account=receiving_wallet.address,
             limit_amount=xrpl.models.amounts.IssuedCurrencyAmount(
-                currency="TAZ",
+                currency=os.getenv('taz_token_name'),
                 issuer=sending_wallet.address,
                 value=int("1")
             )
         )
         response =  xrpl.transaction.submit_and_wait(trustline_tx,client, receiving_wallet)
-        print("trustline: " , response) 
+        print("TRUSLINE IS SETUP: " , response) 
         
         send_currency_tx=xrpl.models.transactions.Payment(
             account=sending_wallet.address,
             amount=xrpl.models.amounts.IssuedCurrencyAmount(
-                currency="TAZ",
+                currency=os.getenv('taz_token_name'),
                 value=int("1"),
                 issuer=sending_wallet.address
             ),
             destination=receiving_wallet.address)
         
         response = xrpl.transaction.submit_and_wait(send_currency_tx, client, sending_wallet)
-        print("payments: " , response)  
+        print("PAYMENTS IS SETUP: " , response)  
         
         return "trustline_tx and sending candidate token is complete"  
         

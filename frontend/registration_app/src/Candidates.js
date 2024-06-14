@@ -18,7 +18,7 @@ const Candidates = () => {
     try {
       const response = await axios.get(env.TOKENIZE);
       console.log(response.data);
-      if (response.data == "No voters NFTS found") {
+      if (response.data === "No voters NFTS found") {
         setSuccessMessage(response.data);
       } else {
         setSuccessMessage("Token created successfully!");

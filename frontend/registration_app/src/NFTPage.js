@@ -4,14 +4,19 @@ import "../src/css/NFT.css";
 
 const NFTPage = () => {
   const [uriList, setUriList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/get_nft");
-        setUriList(response.data.uri);
+        setUriList(response.data.uri || []); // Ensure response.data.uri is an array
       } catch (error) {
         console.error("Error fetching the data:", error);
+        setError("Error fetching the data");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -20,17 +25,24 @@ const NFTPage = () => {
 
   return (
     <div className="nft-container">
-      <h1>NFT Display</h1>
       <div className="iframe-wrapper">
-        {uriList.map((uri, index) => (
-          <iframe
-            key={index}
-            src={uri}
-            title={`NFT${index + 1}`}
-            className="nft-iframe"
-            scrolling="no"
-          />
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : uriList && uriList.length > 0 ? (
+          uriList.map((uri, index) => (
+            <iframe
+              key={index}
+              src={uri}
+              title={`NFT${index + 1}`}
+              className="nft-iframe"
+              scrolling="no"
+            />
+          ))
+        ) : (
+          <p>No NFTs found</p>
+        )}
       </div>
     </div>
   );

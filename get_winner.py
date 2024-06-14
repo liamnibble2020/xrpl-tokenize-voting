@@ -37,7 +37,7 @@ def get_winner():
             print(f"Balance: {candidate2_balance}, Currency: {candidate2_currency}")
             
             
-        if candidate1_currency == "DON" and candidate2_currency == "TAZ":
+        if candidate1_currency == os.getenv('donald_token_name') and candidate2_currency == os.getenv('taz_token_name'):
             print("Vote returns is Valid")
             
             if candidate1_balance > candidate2_balance:

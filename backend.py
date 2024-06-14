@@ -1,4 +1,5 @@
 import xrpl
+from xrpl.wallet import Wallet
 from flask import Flask, json, request, jsonify
 from flask_cors import CORS 
 from xrpl.clients import JsonRpcClient
@@ -91,11 +92,12 @@ def upload():
 @app.route('/get_nft', methods=['GET'])
 def get_nft():
     """Get NFTs for a given account on the XRPL"""
+    nft_issuer = Wallet.from_seed(os.getenv('nft_issuer'))
     client = JsonRpcClient("https://s.altnet.rippletest.net:51234/")
     
     # Create the request object
     acct_nfts = AccountNFTs(
-        account="r9dGFStwJLU8zs5M696YYJ5E1qMZvfaZEA"
+        account=nft_issuer.address
     )
     
     # Send the request to the XRPL
@@ -114,7 +116,7 @@ def tokenize():
     try:
         # Get NFT cid and create trustline then send candidate token 
         response = get_nft()         
-        
+        print(response)
         if response != "No voters NFTS found":
             # Number of candidate tokens equal to the number of voters nft tokens
             tokenize_tx = candidates_token.tokenize_candidates(response['numbers_of_nfts'])        
@@ -157,11 +159,11 @@ def voting():
             return "Bad credentials"
         else:
         # casting the votes
-            if candidate == "Don":
+            if candidate == os.getenv('donald_token_name'):
                 voters_wallet.vote_don.cache_clear()
                 res = voters_wallet.vote_don(voters_seed)
                 return res
-            elif candidate == "Taz":
+            elif candidate == os.getenv('taz_token_name'):
                 voters_wallet.vote_taz.cache_clear()
                 res = voters_wallet.vote_taz(voters_seed)        
                 return res

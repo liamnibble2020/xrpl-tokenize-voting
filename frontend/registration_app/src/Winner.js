@@ -14,16 +14,16 @@ const Winner = () => {
       if (response.data === "It's a tie") {
         setSuccessMessage(response.data);
         setWinner("");
-      } else if (response.data.winners_name === "DON") {
+      } else if (response.data.winners_name === env.DONALD) {
         setSuccessMessage(
           `The Winner is ${response.data.winners_name} with ${response.data.number_of_votes} votes`
         );
-        setWinner("Don");
-      } else if (response.data.winners_name === "TAZ") {
+        setWinner(env.DONALD);
+      } else if (response.data.winners_name === env.TAZ) {
         setSuccessMessage(
           `The Winner is ${response.data.winners_name} with ${response.data.number_of_votes} votes`
         );
-        setWinner("Taz");
+        setWinner(env.TAZ);
       }
     } catch (error) {
       console.error("Something is wrong", error);
@@ -41,7 +41,7 @@ const Winner = () => {
       ) : (
         <div className="winner-image-container">
           <img
-            src={winner === "Don" ? env.DON_PINATA : env.TAZ_PINATA}
+            src={winner === env.DONALD ? env.DON_PINATA : env.TAZ_PINATA}
             alt={`${winner} wins`}
             className="winner-image"
           />

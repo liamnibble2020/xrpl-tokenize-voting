@@ -105,8 +105,8 @@
 
 /* In your CSS file or within a <style> tag */
 .luminous {
-  color: #00ff00; /* Green text color */
-  background-color: transparent; /* No background color */
+  color: #e75529; /* Green text color */
+  background-color: #00ff00; /* No background color */
   border-radius: 5px;
   padding: 5px 10px;
   box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
