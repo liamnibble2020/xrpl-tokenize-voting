@@ -2,47 +2,60 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 140vh;
+  height: 100vh; /* Adjusted to 100vh to fit the viewport height */
   background-image: url("../image/flower.jpeg"); /* Replace with your image path */
   background-size: cover; /* Cover the entire container */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Do not repeat the background image */
+  overflow: hidden; /* Prevent scrolling */
 }
 
 form {
   background-color: #ef0d0d;
   padding: 20px;
   color: white;
-  margin-right: 10px;
-  margin-left: 10px;
-  width: 420px;
+  margin: 0 10px;
+  width: fit-content;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: fit-content;
-  height: fit-content; /* Adjust the height to fit content */
+}
+
+form .name-fields,
+form .birthday-email-fields,
+form .pincode-fields {
+  display: flex;
+  gap: 10px; /* Space between the fields */
+  margin-bottom: 10px;
+}
+
+form .name-fields > div,
+form .birthday-email-fields > div,
+form .pincode-fields > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 form label {
-  display: block;
-  margin-bottom: 2px;
-  width: fit-content;
+  margin-bottom: 5px;
 }
 
 form input {
-  width: calc(100% - 40px);
+  width: 100%;
   padding: 8px;
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* Ensure spacing between fields */
   border: 1px solid #090909;
   border-radius: 4px;
 }
 
 form button {
   padding: 10px 20px;
-  background-color: #4caf50;
+  background-color: #e82034;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  margin-top: 10px; /* Add margin-top to separate from the last input field */
 }
 
 form button:hover {
@@ -51,8 +64,9 @@ form button:hover {
 
 .submit-button {
   display: block;
-  margin: 20px auto; /* Adjust margin as needed */
-  text-align: center; /* Center button text */
+  margin: 20px auto;
+  text-align: center;
+  background-color: #20e83b;
 }
 
 .oval-image {

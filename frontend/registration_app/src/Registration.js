@@ -83,55 +83,60 @@ const Registration = () => {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="firstname"
-            value={formData.firstname}
-            onChange={handleChange}
-            required
-          />
+        <h1>Register here</h1>
+        <div className="name-fields">
+          <div>
+            <label>First Name:</label>
+            <input
+              type="text"
+              name="firstname"
+              value={formData.firstname}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Middle Name:</label>
+            <input
+              type="text"
+              name="middlename"
+              value={formData.middlename}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Last Name:</label>
+            <input
+              type="text"
+              name="lastname"
+              value={formData.lastname}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
-        <div>
-          <label>Middle Name:</label>
-          <input
-            type="text"
-            name="middlename"
-            value={formData.middlename}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="lastname"
-            value={formData.lastname}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Birthday:</label>
-          <input
-            type="date"
-            name="birthday"
-            value={formData.birthday}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+        <div className="birthday-email-fields">
+          <div>
+            <label>Birthday:</label>
+            <input
+              type="date"
+              name="birthday"
+              value={formData.birthday}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
         <label className="gender-label">Gender:</label>
         <div className="gender-options">
@@ -143,7 +148,7 @@ const Registration = () => {
               checked={formData.gender === "male"}
               onChange={handleChange}
               required
-            />{" "}
+            />
             Male
           </label>
           <label className="gender-option">
@@ -154,7 +159,7 @@ const Registration = () => {
               checked={formData.gender === "female"}
               onChange={handleChange}
               required
-            />{" "}
+            />
             Female
           </label>
         </div>
@@ -178,29 +183,31 @@ const Registration = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="pincode">Pincode:</label>
-          <input
-            type="password"
-            id="pincode"
-            name="pincode"
-            value={formData.pincode}
-            onChange={handleChange}
-            maxLength="6"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="confirmPincode">Confirm Pincode:</label>
-          <input
-            type="password"
-            id="confirmPincode"
-            name="confirmPincode"
-            value={formData.confirmPincode}
-            onChange={handleChange}
-            maxLength="6"
-            required
-          />
+        <div className="pincode-fields">
+          <div>
+            <label htmlFor="pincode">Pincode:</label>
+            <input
+              type="password"
+              id="pincode"
+              name="pincode"
+              value={formData.pincode}
+              onChange={handleChange}
+              maxLength="6"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="confirmPincode">Confirm Pincode:</label>
+            <input
+              type="password"
+              id="confirmPincode"
+              name="confirmPincode"
+              value={formData.confirmPincode}
+              onChange={handleChange}
+              maxLength="6"
+              required
+            />
+          </div>
         </div>
         <button
           className="submit-button"
