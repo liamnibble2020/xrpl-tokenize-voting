@@ -105,9 +105,18 @@ def get_nft():
     # print(response.result)
     
     nft = {"numbers_of_nfts": len(response.result["account_nfts"]) , "uri":[hex_to_str(obj["URI"]) for obj in response.result["account_nfts"]]}
+    
+    pinata_domain = os.getenv('pinata_domain')
+    pinata_token = os.getenv('pinata_token')
+    transformed_urls = [
+        f"{pinata_domain}{uri.split('/ipfs/')[1]}?pinataGatewayToken={pinata_token}"
+        for uri in nft["uri"]
+    ]  
+       
     if len(response.result["account_nfts"]) == 0 :
         return "No voters NFTS found"
-    return nft
+    else:
+        return jsonify({"uri": transformed_urls})
 
     
 @app.route('/tokenize', methods=['GET'])

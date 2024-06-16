@@ -11,7 +11,8 @@ const NFTPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/get_nft");
-        setUriList(response.data.uri || []); // Ensure response.data.uri is an array
+        console.log(response.data);
+        setUriList(response.data.uri || []);
       } catch (error) {
         console.error("Error fetching the data:", error);
         setError("Error fetching the data");

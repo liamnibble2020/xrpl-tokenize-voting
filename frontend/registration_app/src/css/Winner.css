@@ -6,10 +6,10 @@
   height: 100vh;
   text-align: center;
   position: relative;
-  background-image: url("../image/confetti.jpeg"); /* Replace with your image path */
-  background-size: cover; /* Cover the entire container */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Do not repeat the background image */
+  background-image: url("../image/confetti.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .message {
@@ -19,12 +19,12 @@
 }
 
 .message.success {
-  position: fixed; /* Set the position to fixed */
-  top: 0; /* Position it at the top */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  width: 40%; /* Adjust the width as needed */
-  margin: 10px auto; /* Add margin to center vertically */
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  margin: 10px auto;
   padding: 10px;
   border-radius: 4px;
   border: 1px solid rgb(0, 255, 68);
@@ -46,11 +46,11 @@
 }
 
 .circle:hover {
-  background-color: darkgreen; /* Change color on hover */
+  background-color: darkgreen;
 }
 
 .circle:active {
-  transform: scale(0.95); /* Shrink when pressed */
+  transform: scale(0.95);
 }
 
 .circle-text {

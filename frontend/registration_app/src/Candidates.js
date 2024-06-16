@@ -38,7 +38,7 @@ const Candidates = () => {
       try {
         const response = await axios.get(env.GET_NFT);
         console.log(response.data);
-        setNumberNfts(response.data.numbers_of_nfts);
+        setNumberNfts(response.data.uri.length);
       } catch (error) {
         console.error("Error fetching the data:", error);
         setErrorMessage("Error fetching the data. Please try again.");
